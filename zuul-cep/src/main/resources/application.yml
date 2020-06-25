@@ -1,0 +1,22 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: zuul
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 11000
+
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 10000
+
+zuul:
+  ignoredServices: '*'
+  routes:
+    cep:
+      path: /consulta/**
+      serviceId: usuariocep
+      stripPrefix: false
+      sensitiveHeaders: Cookie, Set-Cookie, Authorization
+
